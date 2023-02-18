@@ -1,0 +1,20 @@
+{
+    "Bot":{
+        "Token": "",
+        "BotID": "",
+        "EmbedColor": "#3498dd",
+        "Version": "0.1",
+        "Prefix": "?"
+    },
+    "Server":{
+        "ServerID": "",
+        "WelcomeChannel": "",
+        "LogChannel": ""
+    },
+    "Database":{
+        "Hostname": "",
+        "Tablename": "",
+        "Username": "",
+        "Password": ""
+    }
+}

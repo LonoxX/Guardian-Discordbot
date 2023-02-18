@@ -1,0 +1,17 @@
+{
+    "name": "Guardian-Discordbot",
+    "version": "0.1",
+    "description": "Guardian Discord Bot ",
+    "main": "index.js",
+    "scripts": {},
+    "keywords": [],
+    "author": "LonoxX",
+    "license": "MIT",
+    "dependencies": {
+        "discord.js": "^14.7.1",
+        "@discordjs/builders": "^1.2.0",
+        "@discordjs/rest": "^1.5.0",
+        "mysql2": "^3.0.1",
+        "sequelize": "^6.28.0"
+    }
+}
