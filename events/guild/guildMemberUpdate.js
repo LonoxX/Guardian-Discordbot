@@ -1,13 +1,13 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, oldMember, newMember) => {
     if (oldMember.nickname !== newMember.nickname) {
-    // Update nickname
-    const logChannel = client.channels.cache.get(config.Server.LogChannel);
-    if (!logChannel) return;
     const allLogs = await newMember.guild.fetchAuditLogs({ type: 25 });
-    // wenn newMember nickname === null  wurde der name zurückgesetzt
+    const guild = channel.guild.id;
+    const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+    const logChannel = await client.channels.cache.get(guildData.logchannel);
+    if (!logChannel) return;
     if (newMember.nickname == null) {
       const embed = new Discord.EmbedBuilder()
         .setTitle("Nickname wurde zurückgesetzt")

@@ -2,10 +2,12 @@ const config = require("../../config.json");
 const Discord = require("discord.js");
 
 module.exports = async (client, invite) => {
-  const logChannel = await client.channels.cache.get(config.Server.LogChannel);
-  if (!logChannel) return;
   const allLogs = await invite.guild.fetchAuditLogs({ type: 42 });
+  const guild = channel.guild.id;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
   const fetchModerator = allLogs.entries.first();
+  if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
     .setTitle("👩‍👧‍👦 Einladung gelöscht")
     .setColor(config.Bot.EmbedColor)

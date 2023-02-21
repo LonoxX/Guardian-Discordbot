@@ -1,13 +1,12 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, oldchannel , channel , oldTopic, newTopic) => {
-    console.log(channel.name+"'s topic changed to " + newTopic +"!");
-
-
       const allLogs = await channel.guild.fetchAuditLogs({ type: 11 });
+      const guild = channel.guild.id;
+      const guildData = await SGuilds.findOne({ where: { guildId: guild } });
       const fetchLogs = allLogs.entries.first();
-      const logChannel = await client.channels.cache.get(config.Server.LogChannel);
+      const logChannel = await client.channels.cache.get(guildData.logchannel);
       if (!logChannel) return;
       // wenn der channel name geändert wurde
         if (oldchannel.name !== channel.name) {

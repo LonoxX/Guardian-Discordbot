@@ -1,10 +1,12 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, emoji) => {
-  const logChannel = client.channels.cache.get(config.Server.LogChannel);
-  if (!logChannel) return;
+  const guild = channel.guild.id;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
   const fetchEmojiAuthor = await emoji.fetchAuthor();
+  if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
       .setTitle('🥳 Emoji gelöscht')
       .setColor(config.Bot.EmbedColor)

@@ -1,12 +1,15 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
-module.exports = async (client, message) => {
-  const logChannel = client.channels.cache.get(config.Server.LogChannel);
+const SGuilds = require("../../handlers/guilds.js");
+module.exports = async (client, message,channel) => {
+  const allLogs = await message.guild.fetchAuditLogs({ type: 72 });  
+  const guild = message.guild.id;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
-  if (message.channel == config.Server.LogChannel)return;
-  const allLogs = await message.guild.fetchAuditLogs({ type: 72 });
   const fetchModerator = allLogs.entries.first();
+  if (message.channel == guildData.logchannel) return;
+  if (!logChannel) return console.log("logChannel not found") ;
   const embed = new Discord.EmbedBuilder()
     .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }),  })
     .setColor(config.Bot.EmbedColor)

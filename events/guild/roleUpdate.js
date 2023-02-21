@@ -1,10 +1,13 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, oldRole, newRole) => {
-      const logChannel = client.channels.cache.get(config.Server.LogChannel);
-      if (!logChannel) return;
       const allLogs = await newRole.guild.fetchAuditLogs({ type: 25 });
+      const guild = channel.guild.id;
+      const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+      const fetchLogs = allLogs.entries.first();
+      const logChannel = await client.channels.cache.get(guildData.logchannel);
+      if (!logChannel) return;
       const fetchModerator = await allLogs.entries.first();
       if (oldRole.color !== newRole.color) {
           const embed = new Discord.EmbedBuilder()

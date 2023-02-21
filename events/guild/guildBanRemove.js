@@ -1,11 +1,13 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, ban) => {
-  const logChannel = await client.channels.cache.get(config.Server.LogChannel);
-  if (!logChannel) return;
-  const allLogs = await ban.guild.fetchAuditLogs({ type: 23 });
+  const allLogs = await channel.guild.fetchAuditLogs({ type: 22 });
+  const guild = channel.guild.id;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
   const fetchModerator = allLogs.entries.first();
+  if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
     .setTitle("🔨 User entbannt")
     .setColor(config.Bot.EmbedColor)

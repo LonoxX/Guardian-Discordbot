@@ -1,8 +1,9 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
-
+const SGuilds = require("../../handlers/guilds.js");
 module.exports = async (client, guild, vanityURL) => {
-  const logChannel = client.channels.cache.get(config.Server.LogChannel);
+  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
     .setTitle("Vanity URL")
