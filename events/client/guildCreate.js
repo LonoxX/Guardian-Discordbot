@@ -18,9 +18,9 @@ module.exports = async (client, guild) => {
             prefix: config.Bot.Prefix,
             lang: "en",
             modLogsChannelId: null,
-            joinLogsChannelId: null,
-            leaveLogsChannelId: null,
-            memberCount: guild.memberCount,
+            joinchannel: null,
+            leavechannel: null,
+            membercount: guild.membercount,
             created_at: new Date(),
           })
           .then(() => {

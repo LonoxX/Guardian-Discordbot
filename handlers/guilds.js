@@ -18,27 +18,31 @@ module.exports = class guilds extends Model {
         lang: {
           type: DataTypes.STRING,
         },
-        modLogsChannelId: {
+        logchannel: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        joinLogsChannelId: {
+        joinchannel: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        leaveLogsChannelId: {
+        leavechannel: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        ticketLogsChannelId: {
+        ticketchannel: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        ticketCategoryId: {
+        ticketcategory: {
           type: DataTypes.STRING,
           allowNull: true,
         },
-        memberCount: {
+        supportrole: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
+        membercount: {
           type: DataTypes.INTEGER,
         },
         created_at: {

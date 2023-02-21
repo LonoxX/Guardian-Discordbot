@@ -38,11 +38,11 @@ db.authenticate()
               prefix: config.Bot.Prefix,
               lang: "en",
               modLogsChannelId: null,
-              joinLogsChannelId: null,
-              leaveLogsChannelId: null,
+              joinchannel: null,
+              leavechannel: null,
               ticketChannelId: null,
-              ticketCategoryId: null,
-              memberCount: guild.memberCount,
+              ticketcategory: null,
+              membercount: guild.membercount,
               created_at: new Date(),  
             })
               .then(() => {

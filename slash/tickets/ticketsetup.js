@@ -3,20 +3,26 @@ const config = require('../../config.json');
 const SGuilds = require("../../handlers/guilds.js");
 module.exports = {
     name: "ticketsetup",
-    description: 'Sendet eine das Ticket Panel zu einem Channel',
+    description: 'Sends a ticket panel to a channel',
     options: [
         {
             name: 'channel',
-            description: 'Channel, das das Panel angezeigt werden soll',
+            description: 'Channel that the panel should be displayed',
             type: 7,
             channel_types: [0],
         },
         {
             name: 'category',
-            description: 'Kategorie, wo das Ticket erstellt werden soll',
+            description: 'ticket Category',
             type: 7,
             channel_types: [4],
-        }
+        },
+        // Ticket role
+        {   
+            name: 'role',
+            description: 'Role that can see the ticket',
+            type: 8,
+        },
     ],
     timeout: 3000,
     category: 'team',
@@ -24,20 +30,12 @@ module.exports = {
     run: async (interaction, client) => {
         const channel = interaction.options.getChannel("channel");
         const category = interaction.options.getChannel("category");
+        const role = interaction.options.getRole("role");
         const guild = interaction.guild;
-        console.log(guild.id + " " + channel.id + " " + category.id);
-
         async function setTicketChannel(serverId, channelId, categoryId) {
             let tickets = await SGuilds.update(
-                {
-                    ticketLogsChannelId: channelId,
-                    ticketCategoryId: categoryId,
-                },
-                {
-                    where: {
-                        guildId: serverId,
-                    },
-                }
+                { ticketchannel: channelId, ticketcategory: categoryId, ticketRole: role.id, },
+                { where: { guildId: serverId, }, }
             );
         }
 
@@ -63,7 +61,6 @@ module.exports = {
 
         interaction.reply({ content: `Ticket Panel Erfolg in ${channel}! senden gesendet`, ephemeral: true });
         setTicketChannel(guild.id, channel.id, category.id);
-        console.log(guild.id + " " + channel.id + " " + category.id);
         return channel.send({ embeds: [embed], components: [row] });
     }
 };
