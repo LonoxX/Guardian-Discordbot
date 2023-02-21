@@ -32,7 +32,8 @@ const rest = new REST({ version: "10" }).setToken(config.Bot.Token);
 
 (async () => {
   try {
-    await rest.put( Routes.applicationGuildCommands(config.Bot.BotID, config.Server.ServerID), { body: commands } );
+    await rest.put(Routes.applicationCommands(config.Bot.BotID), { body: commands });
+    console.log("[Discord API] Successfully reloaded application (/) commands.");
   } 
   catch (error) { console.error(error); }
 })();

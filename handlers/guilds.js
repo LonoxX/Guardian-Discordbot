@@ -30,6 +30,14 @@ module.exports = class guilds extends Model {
           type: DataTypes.STRING,
           allowNull: true,
         },
+        ticketLogsChannelId: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
+        ticketCategoryId: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
         memberCount: {
           type: DataTypes.INTEGER,
         },
@@ -39,6 +47,7 @@ module.exports = class guilds extends Model {
         },
       },
       {
+        timestamps: false,
         tableName: "guilds",
         sequelize,
       }
