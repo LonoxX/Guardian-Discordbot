@@ -49,6 +49,10 @@ module.exports = class guilds extends Model {
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW,
         },
+        uploadhost: {
+          type: DataTypes.STRING,
+          allowNull: true,
+        },
       },
       {
         timestamps: false,

@@ -111,9 +111,7 @@ module.exports = async (client, interaction) => {
   if ( interaction.customId === "ticket-close" && interaction.channel.name.includes("ticket") ) {
     const channel = interaction.channel;
     const member = interaction.guild.members.cache.get(channel.topic);
-
-    const logchannel = client.channels.cache.get(guildData.modLogsChannelId);
-
+    const logchannel = client.channels.cache.get(guildData.logchannel);
     const rowPanel = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setLabel("Schließen")
@@ -122,30 +120,20 @@ module.exports = async (client, interaction) => {
         .setDisabled(true)
         .setCustomId("ticket-close")
     );
-
     await interaction.message.edit({ components: [rowPanel] });
-
     const embed = new EmbedBuilder()
       .setTitle("Support Ticket - Geschlossen")
       .setColor(config.Bot.EmbedColor)
       .setDescription(  `Das Ticket wurde von **<@!${interaction.user.id}>** geschlossen! \n es wird in Kürze gelöscht!` )
       .setFooter({ text: `${client.user.username} `, iconURL: `${client.user.displayAvatarURL()} `,  })
       .setTimestamp();
-
     interaction.reply({ embeds: [embed] });
     let tickets = await Ticket.update(
-      {
-        resolved: true,
-        downloadurl: interaction.message.id,
-      },
-      {
-        where: {
-          closedMessageId: interaction.message.id,
-        },
-      }
+      { resolved: true,  downloadurl: interaction.message.id, },
+      { where: { closedMessageId: interaction.message.id, }, }
     );
+   
     interaction.channel.permissionOverwrites.edit(member, { ViewChannel: false, });
-
     setTimeout(async function () {
       const attachment = await discordTranscripts.createTranscript(channel, {
         limit: -1,
@@ -154,10 +142,11 @@ module.exports = async (client, interaction) => {
         saveImages: true,
         poweredBy: false
       });
+      
+    console.log("discordTranscripts "+channel);
       const crypto = require('crypto');
       const randomString = crypto.randomBytes(16).toString('hex');
       const filename = randomString.match(/.{1,4}/g).join('-') + '.html';
-  
       const formData = {
         file: {
           value: attachment,
@@ -167,9 +156,9 @@ module.exports = async (client, interaction) => {
           }
         }
       };
-  
+
       request.post({
-        url: `https://${config.Server.Uploadhost}/upload.php`,
+        url: `https://${guildData.uploadhost}/upload.php`,
         formData: formData
       }, function (error, response, body) {
         if (error) throw new Error(error);
@@ -179,7 +168,7 @@ module.exports = async (client, interaction) => {
         .setColor(config.Bot.EmbedColor)
         .setThumbnail(client.user.displayAvatarURL())
         .setAuthor({ name: client.user.tag, iconURL: client.user.displayAvatarURL({ dynamic: true }), })
-        .setDescription( `Erstellt von: <@!${ interaction.user.id }> \n Erstellt am: ** ${new Date().toLocaleString()}**\n Donwload: [Transcript](https://${config.Server.Uploadhost}/tickets/${filename})`)
+        .setDescription( `Erstellt von: <@!${ interaction.user.id }> \n Erstellt am: ** ${new Date().toLocaleString()}**\n Donwload: [Transcript](https://${guildData.uploadhost}/tickets/${filename})`)
         .setTimestamp()
         .setFooter({ text: `${client.user.username} `,  iconURL: `${client.user.displayAvatarURL()}`, });
       logchannel.send({ embeds: [transcript] }).then((message) => {

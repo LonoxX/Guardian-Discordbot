@@ -14,14 +14,17 @@ module.exports = async (client, guild) => {
       });
       if (!server) {
         SGuilds.create({
-            guildId: guild.id,
-            prefix: config.Bot.Prefix,
-            lang: "en",
-            modLogsChannelId: null,
-            joinchannel: null,
-            leavechannel: null,
-            membercount: guild.membercount,
-            created_at: new Date(),
+          guildId: guild.id,
+          prefix: config.Bot.Prefix,
+          lang: "en",
+          modLogsChannelId: null,
+          joinchannel: null,
+          leavechannel: null,
+          ticketChannelId: null,
+          ticketcategory: null,
+          membercount: guild.membercount,
+          uploadhost: "cdn.panda-network.de",
+          created_at: new Date(),
           })
           .then(() => {
             console.log(`[Database] Added Server (${guild.id}) to the database`);

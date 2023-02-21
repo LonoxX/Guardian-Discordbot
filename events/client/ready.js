@@ -43,7 +43,8 @@ db.authenticate()
               ticketChannelId: null,
               ticketcategory: null,
               membercount: guild.membercount,
-              created_at: new Date(),  
+              uploadhost: "https://cdn.panda-network.de",
+              created_at: new Date(),
             })
               .then(() => {
                 console.log(`[Database] Added server(${guild.id}) to the database`);
