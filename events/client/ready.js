@@ -43,7 +43,7 @@ db.authenticate()
               ticketChannelId: null,
               ticketcategory: null,
               membercount: guild.membercount,
-              uploadhost: "https://cdn.panda-network.de",
+              uploadhost: "cdn.panda-network.de",
               created_at: new Date(),
             })
               .then(() => {

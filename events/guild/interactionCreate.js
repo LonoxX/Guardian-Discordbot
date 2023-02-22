@@ -32,10 +32,8 @@ module.exports = async (client, interaction) => {
       .then(async () => {
         try {
 
-          let ticketCount = await Ticket.count({
-            where: {
-              guildId: guild.id,
-            },
+          let ticketCount = await Ticket.max('ticketId', {
+            where: { guildId: guild.id },
           });
           const createdChannel = await interaction.guild.channels.create({
             name: "ticket",
@@ -85,6 +83,8 @@ module.exports = async (client, interaction) => {
             .setTimestamp();
 
           let msg = await createdChannel.send({ content: `||<@&${guildData.supportrole}>||`, embeds: [embed], components: [row], });
+          console.log(ticketCount);
+          console.log(ticketCount+1);
           let newTicket = await Ticket.create({
             authorId: interaction.user.id,
             channelId: createdChannel.id,
@@ -142,8 +142,6 @@ module.exports = async (client, interaction) => {
         saveImages: true,
         poweredBy: false
       });
-      
-    console.log("discordTranscripts "+channel);
       const crypto = require('crypto');
       const randomString = crypto.randomBytes(16).toString('hex');
       const filename = randomString.match(/.{1,4}/g).join('-') + '.html';

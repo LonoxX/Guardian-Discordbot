@@ -17,7 +17,6 @@ module.exports = {
             type: 7,
             channel_types: [4],
         },
-        // Ticket role
         {   
             name: 'role',
             description: 'Role that can see the ticket',
@@ -34,10 +33,11 @@ module.exports = {
         const guild = interaction.guild;
         async function setTicketChannel(serverId, channelId, categoryId) {
             let tickets = await SGuilds.update(
-                { ticketchannel: channelId, ticketcategory: categoryId, ticketRole: role.id, },
+                { ticketchannel: channelId, ticketcategory: categoryId, supportrole: role.id, },
                 { where: { guildId: serverId, }, }
             );
         }
+        console.log(role.id);
 
         const row = new ActionRowBuilder()
             .addComponents(
