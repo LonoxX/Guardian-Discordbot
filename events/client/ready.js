@@ -22,7 +22,7 @@ module.exports = async (client) => {
           activities.push({ text: message.text });
         });
         activity = activities[Math.floor(Math.random() * activities.length)];
-        client.user.setActivity(activity.text, { type: ActivityType.Competing});
+        client.user.setActivity(activity.text, { type: ActivityType.Playing});
       })
       .catch(err => {
         console.log(err);
