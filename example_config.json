@@ -1,20 +1,16 @@
 {
     "Bot":{
-        "Token": "",
-        "BotID": "",
-        "EmbedColor": "#3498dd",
-        "Version": "0.1",
-        "Prefix": "?"
-    },
-    "Server":{
-        "ServerID": "",
-        "WelcomeChannel": "",
-        "LogChannel": ""
+        "Token": "Bot_Token",
+        "BotID": "Bot_ID",
+        "EmbedColor": "#3498dd",        
+        "Version": "1.0.0",
+        "Prefix": "?", 
+        "OwnersID": ["Owner_ID"]
     },
     "Database":{
-        "Hostname": "",
-        "Tablename": "",
-        "Username": "",
-        "Password": ""
+        "Hostname": "Hostname",
+        "Tablename": "Tablename",
+        "Username": "Username",
+        "Password": "Password"
     }
 }

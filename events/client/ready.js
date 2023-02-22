@@ -2,19 +2,32 @@ const config = require("../../config.json");
 const db = require("../../handlers/database.js");
 const Ticket = require("../../handlers/ticket.js");
 const SGuilds = require("../../handlers/guilds.js");
+const Activity = require("../../handlers/activity.js");
 const { ActivityType } = require("discord.js");
-const { timeout } = require("../../slash/tickets/ticketsetup");
 
 module.exports = async (client) => {
   setInterval(() => {
-    var activities = [
+    const activities = [
+      { text: "" + Math.ceil(client.guilds.cache.size) + " Server." },
       { text: "Version " + config.Bot.Version },
     ];
-    try {
-      const activity = activities[Math.floor(Math.random() * activities.length)]; client.user.setActivity(activity.text, { type: ActivityType.Streaming,  url: "https://www.twitch.tv/LonoxX_", });
-    } catch (err) {
-      return;
-    }
+    let activity;
+    db.authenticate()
+      .then(async () => {
+        const messages = await Activity.findAll({
+          attributes: ['text'],
+          raw: true,
+        });
+        messages.forEach(message => {
+          activities.push({ text: message.text });
+        });
+        activity = activities[Math.floor(Math.random() * activities.length)];
+        client.user.setActivity(activity.text, { type: ActivityType.Competing});
+      })
+      .catch(err => {
+        console.log(err);
+        return;
+      });
   }, 10000);
     
 console.log(`[Discord API] Logged in as ${client.user.tag}`);
@@ -24,6 +37,8 @@ db.authenticate()
     Ticket.sync();
     SGuilds.init(db);
     SGuilds.sync();
+    Activity.init(db);
+    Activity.sync();
     console.log("[Database] Connection has been established successfully.");
   })
   .then(async () => {
@@ -56,7 +71,6 @@ db.authenticate()
         }
       }
     }, 3000);
-    
   })
   .catch((error) => {
     console.error("[Database] Unable to connect to the database:", error);
