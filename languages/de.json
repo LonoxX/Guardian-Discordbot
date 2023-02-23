@@ -1,0 +1,8 @@
+{
+  "ticket": {
+    "label": "Ticket erstellen",
+    "title": "Ticketsystem",
+    "description": "Um ein Ticket zu erstellen, reagiere mit 🎟️",
+    "panelSuccess": "Ticket-Panel erfolgreich an {channel} gesendet!"
+  }
+}

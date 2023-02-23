@@ -1,6 +1,7 @@
 const { ActionRowBuilder, EmbedBuilder, ButtonBuilder } = require("discord.js");
 const config = require('../../config.json');
 const SGuilds = require("../../handlers/guilds.js");
+const { getLang, setTicketChannel } = require('../../handlers/settings.js');
 module.exports = {
     name: "ticketsetup",
     description: 'Sends a ticket panel to a channel',
@@ -24,43 +25,31 @@ module.exports = {
         },
     ],
     timeout: 3000,
-    category: 'team',
-    ownerOnly: true,
     run: async (interaction, client) => {
+
         const channel = interaction.options.getChannel("channel");
         const category = interaction.options.getChannel("category");
         const role = interaction.options.getRole("role");
         const guild = interaction.guild;
-        async function setTicketChannel(serverId, channelId, categoryId) {
-            let tickets = await SGuilds.update(
-                { ticketchannel: channelId, ticketcategory: categoryId, supportrole: role.id, },
-                { where: { guildId: serverId, }, }
-            );
-        }
-        console.log(role.id);
-
+        const lang = await getLang(guild);
         const row = new ActionRowBuilder()
             .addComponents(
                 new ButtonBuilder()
-                    .setLabel("Ticket erstellen")
+                    .setLabel(lang.messages.ticket.title)
                     .setEmoji("🎟️")
                     .setStyle("2")
                     .setCustomId("create-ticket")
             );
-
         const embed = new EmbedBuilder()
-            .setTitle(`${guild.name} - Support`, client.user.displayAvatarURL())
+            .setTitle(`${guild.name} - ${lang.messages.ticket.title}`, client.user.displayAvatarURL())
             .setColor(config.Bot.EmbedColor)
             .setThumbnail(client.user.displayAvatarURL())
-            .setDescription("Um ein Ticket zu erstellen reagiere mit 🎟️")
+            .setDescription(lang.messages.ticket.description)
             .setTimestamp()
-            .setFooter({
-                text: `${client.user.username}`,
-                iconURL: `${client.user.displayAvatarURL()}`,
-            });
+            .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
 
-        interaction.reply({ content: `Ticket Panel Erfolg in ${channel}! senden gesendet`, ephemeral: true });
-        setTicketChannel(guild.id, channel.id, category.id);
+        interaction.reply({ content: lang.messages.ticket.panelSuccess.replace("{channel}", channel), ephemeral: true });
+        setTicketChannel(guild.id, channel.id, category.id, role.id);
         return channel.send({ embeds: [embed], components: [row] });
     }
 };
