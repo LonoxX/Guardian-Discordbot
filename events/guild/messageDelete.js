@@ -11,10 +11,10 @@ module.exports = async (client, message,channel) => {
   if (message.channel == guildData.logchannel) return;
   if (!logChannel) return console.log("logChannel not found") ;
   const embed = new Discord.EmbedBuilder()
-    .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }),  })
-    .setColor(config.Bot.EmbedColor)
-    .setDescription( `🗑 **Nachricht gesendet von ${message.author} gelöscht in ${message.channel}.**\n${message.content}` )
-    .setTimestamp()
-    .setFooter({  text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }), });
-  return logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+  .setDescription(`🗑 **Message sent by ${message.author} deleted in ${message.channel}.**\n${message.content}`)
+  .addField('Responsible Moderator:', `<@${fetchModerator.executor.id}>`)
+  .setTimestamp()
+  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  return logChannel.send({ embeds: [embed] })
+}

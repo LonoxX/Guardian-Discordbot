@@ -6,11 +6,8 @@ module.exports = async (client, guild, oldURL, newURL) => {
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("Vanity URL")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
-    .setDescription( `**${guild.name} hat eine Vanity-URL von geändert [alteURL](${oldURL}) to [neueURL](${newURL})**` )
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
+  .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+  .setDescription(`**${guild.name} has chnaged a vanity url from [oldURL](${oldURL}) to [newURL](${newURL})**`)
+  .setTimestamp()
   return logChannel.send({ embeds: [embed] });
-};
+}

@@ -9,12 +9,10 @@ module.exports = async (client, thread) => {
   if (!logChannel) return;
   const fetchModerator = allLogs.entries.first();
   const embed = new Discord.EmbedBuilder()
-    .setTitle("Thread erstellt")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL({ dynamic: true }), })
-    .setDescription( `**<@${fetchModerator.executor.id}> erstellt <#${thread.id}> Thread.**` )
-    .addFields({ name: "User:", value: `<@${fetchModerator.executor.id}> (\`${fetchModerator.executor.id}`, inline: true, })
-    .setTimestamp()
-    .setFooter({  text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  return logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: thread.guild.name, iconURL: thread.guild.iconURL({ dynamic: true }) })
+  .setDescription(`**<@${fetchModerator.executor.id}> has created <#${thread.id}> thread.**`)
+  .addField('Responsible Moderator:', `<@${fetchModerator.executor.id}>`)
+  .setTimestamp()
+  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  return logChannel.send({ embeds: [embed] })
+}

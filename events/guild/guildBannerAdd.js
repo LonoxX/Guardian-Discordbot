@@ -6,12 +6,9 @@ module.exports = async (guild, bannerURL) => {
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("Server Banner")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
-    .setDescription(`**${guild.name} hat jetzt einen Banner!**`)
-    .setImage(bannerURL)
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  return logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+  .setDescription(`**${guild.name} has banner now!**`)
+  .setImage(bannerURL)
+  .setTimestamp()
+  return logChannel.send({ embeds: [embed] })
+}

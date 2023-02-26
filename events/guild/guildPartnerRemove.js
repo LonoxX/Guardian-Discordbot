@@ -6,11 +6,8 @@ module.exports = async (client, guild) => {
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("Discord Partner")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
-    .setDescription(`**${guild.name} ist nicht mehr verpartnert!**`)
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
+  .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+  .setDescription(`**${guild.name} is on longer partnered!**`)
+  .setTimestamp()
   return logChannel.send({ embeds: [embed] });
-};
+}

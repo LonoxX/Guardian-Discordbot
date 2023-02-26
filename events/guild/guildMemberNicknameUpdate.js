@@ -7,14 +7,19 @@ module.exports = async (client, member, oldNickname, newNickname) => {
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("Nickname Update")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true }), })
-    .setDescription(`**${member} Spitzname wurde geändert.**`)
-    .addFields(
-      { name: "🏁 Alter Nickname:", value: oldNickname || "Kein Spitzname", },
-      { name: "🏁 Neuer Nickname:", value: newNickname || "No Nickname", } 
-      )
+  .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true })})
+  .setDescription(`**${member} nickname has been changed.**`)
+  .addFields(
+      {
+          name: "🏁 Old Nickname:",
+          value: oldNickname || 'No Nickname'
+      },
+      {
+          name: "🏁 New Nickname:",
+          value: newNickname || 'No Nickname'
+      }
+  )
     .setTimestamp()
     .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
+  return logChannel.send({ embeds: [embed] });
 };

@@ -6,13 +6,11 @@ module.exports = async (client, member) => {
   const guildData = await SGuilds.findOne({ where: { guildId: guild } });
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
-  const embed = new EmbedBuilder()
-    .setTitle("Server Boost")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true }), })
-    .setDescription(`**${member}  hat den Server gerade geboostet**`)
-    .addFields({ name: "Gesamtboosts:", value: member.guild.premiumSubscriptionCount.toString(), inline: true, })
+    const embed = new Discord.EmbedBuilder()
+    .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true })})
+    .setDescription(`**${member} has boosted ${member.guild.name} server.**`)
+    .addField("Total Boosts:", member.guild.premiumSubscriptionCount.toString())
+    .setFooter(member.guild.name, member.guild.iconURL({ dynamic: true }))
     .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  return logChannel.send({ embeds: [embed] });
-};
+    return logChannel.send({ embeds: [embed] });
+}

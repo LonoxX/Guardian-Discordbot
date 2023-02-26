@@ -1,23 +1,23 @@
 const config = require("../../config.json");
 const Discord = require("discord.js");
 const SGuilds = require("../../handlers/guilds.js");
-module.exports = async (client, emoji) => {
-  const guild = channel.guild.id;
-  const guildData = await SGuilds.findOne({ where: { guildId: guild } });
+const { getLang } = require('../../handlers/settings.js');
+module.exports = async (client, emoji,channel) => {
+  const guild = emoji.guild;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild.id } });
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   const fetchEmojiAuthor = await emoji.fetchAuthor();
+  const lang = await getLang(guild);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-      .setTitle('🥳 Emoji erstellt')
-      .setColor(config.Bot.EmbedColor)
-      .setAuthor({ name: emoji.guild.name, iconURL: emoji.guild.iconURL() })
-      .setDescription(`**${fetchEmojiAuthor} hat  <:${emoji.name}:${emoji.id}> erstellt emoji!**`)
-      .setThumbnail(emoji.url)
-      .addFields({
-          name: "User:",
-          value: `<@${fetchEmojiAuthor.id}>`
-      }, )
-      .setTimestamp()
-      .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` });
+  .setAuthor({ name: emoji.guild.name, iconURL: emoji.guild.iconURL() })
+  .setTitle(lang.messages.emoji.create.title)
+  .setDescription(lang.messages.emoji.create.description.replace('{name}', emoji.name).replace('{id}', emoji.id).replace('{id}'))
+  //.setDescription(`**${fetchEmojiAuthor} has created <:${emoji.name}:${emoji.id}> emoji!**`)
+  .setThumbnail(emoji.url)
+  .setFooter({ text: fetchEmojiAuthor.tag, iconURL: fetchEmojiAuthor.displayAvatarURL({ dynamic: true }) })
+  .setTimestamp()
+  .addFields({ name: "⏰ User:",  value: `<@${fetchEmojiAuthor.id}>` },
+  )
   return logChannel.send({ embeds: [embed] })
-};
+}

@@ -9,16 +9,22 @@ module.exports = async (client, ban) => {
   const fetchModerator = allLogs.entries.first();
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("🔨 Bann User")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({  name: ban.user.tag, iconURL: ban.user.displayAvatarURL({ dynamic: true }), })
-    .setDescription(`**🔨 <@${ban.user.id}> vom Server gebannt.**`)
-    .setThumbnail(ban.user.displayAvatarURL({ dynamic: true }))
-    .addFields(
-      { name: "User:", value: `<@${fetchModerator.executor.id}>`, inline: true, },
-      { name: "Ban Grund:", value: fetchModerator.reason || "", inline: true, }
-    )
-    .setTimestamp()
-    .setFooter({ text: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }), });
-  logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: ban.user.tag, iconURL: ban.user.displayAvatarURL({ dynamic: true }) })
+  .setDescription(`**🔨 <@${ban.user.id}> banned from the server.**`)
+  .setThumbnail(ban.user.displayAvatarURL({ dynamic: true }))
+  .setTimestamp()
+  .setFooter({ text: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }) })
+  .addFields(
+      {
+          name: "Responsible Moderator:",
+          value: `<@${fetchModerator.executor.id}>`,
+          inline: true
+      },
+      {
+          name: "Ban Reason:",
+          value: fetchModerator.reason || '',
+          inline: true
+      }
+  )
+  logChannel.send({ embeds: [embed] })
+}

@@ -9,15 +9,29 @@ module.exports = async (client, role) => {
   if (!logChannel) return;
   const fetchModerator = allLogs.entries.first();
   const embed = new Discord.EmbedBuilder()
-    .setTitle("♾️ Rolle erstellt")
-    .setColor(config.Bot.EmbedColor)
-    .setDescription(`👨‍👨‍👧 **\`${role.name}\` wurde erstellt**`)
-    .addFields(
-      { name: ":id: Role ID:",  value: role.id, },
-      { name: "Rollenfarbe:",  value: role.hexColor, },
-      { name: "Rollenposition", value: role.position.toString(), },
-    )
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  return logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: role.guild.name, iconURL: role.guild.iconURL({ dynamic: true }) })
+  .setTitle('♾️ Role Created')
+  .setDescription(`👨‍👨‍👧 **\`${role.name}\` role has been created.**`)
+  .setColor(role.hexColor)
+  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setTimestamp()
+  .addFields(
+      {
+          name: ":id: Role ID:",
+          value: role.id,
+      },
+      {
+          name: "Role Color:",
+          value: role.hexColor
+      },
+      {
+          name: "Role position",
+          value: role.position.toString()
+      },
+      {
+          name: "Responsible Moderator:",
+          value: `<@${fetchModerator.executor.id}>`
+      }
+  )
+  return logChannel.send({ embeds: [embed] })
+}

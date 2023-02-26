@@ -9,15 +9,25 @@ module.exports = async (client, role) => {
   if (!logChannel) return;
   const fetchModerator = allLogs.entries.first();
   const embed = new Discord.EmbedBuilder()
-      .setTitle('♾️ Rolle gelöscht')
-      .setColor(config.Bot.EmbedColor)
-      .setAuthor({ name: role.guild.name, iconURL: role.guild.iconURL({ dynamic: true }) })
-      .setDescription(`👨‍👨‍👧 **\`${role.name}\` wurde gelöscht.**`)
-      .addFields(
-        { name: ":id: Role ID:", value: role.id, }, 
-        { name: "Rollenfarbe:", value: role.hexColor },
-        { name: "User:", value: `<@${fetchModerator.executor.id}>` })
-      .setTimestamp()
-      .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` });
+  .setAuthor({ name: role.guild.name, iconURL: role.guild.iconURL({ dynamic: true }) })
+  .setTitle('♾️ Role Deleted')
+  .setDescription(`👨‍👨‍👧 **\`${role.name}\` role has been deleted.**`)
+  .setColor(role.hexColor)
+  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setTimestamp()
+  .addFields(
+      {
+          name: ":id: Role ID:",
+          value: role.id,
+      },
+      {
+          name: "Role Color:",
+          value: role.hexColor
+      },
+      {
+          name: "Responsible Moderator:",
+          value: `<@${fetchModerator.executor.id}>`
+      }
+  )
   return logChannel.send({ embeds: [embed] })
-};
+}

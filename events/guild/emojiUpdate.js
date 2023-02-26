@@ -7,24 +7,27 @@ module.exports = async (client, oldEmoji, newEmoji) => {
     const logChannel = await client.channels.cache.get(guildData.logchannel);
     const fetchEmojiAuthor = await newEmoji.fetchAuthor();
     if (!logChannel) return;
-  if (oldEmoji.name !== newEmoji.name) {
-      const embed = new Discord.EmbedBuilder()
-          .setTitle('🤩 Emoji Updated')
-          .setAuthor({ name: newEmoji.guild.name, iconURL: newEmoji.guild.iconURL({ dynamic: true }) })
-          .setColor(config.Bot.EmbedColor)
-          .setDescription(`**${fetchEmojiAuthor} hat <:${newEmoji.name}:${newEmoji.id}> Aktualisiert **`)
-          .addFields({
-              name: "Old name:",
-              value: oldEmoji.name
-          }, {
-              name: "New name:",
-              value: newEmoji.name
-          }, {
-              name: "User:",
-              value: `<@${fetchEmojiAuthor.id}>`
-          })
-          .setTimestamp()
-          .setFooter({ text: fetchEmojiAuthor.tag, iconURL: fetchEmojiAuthor.displayAvatarURL({ dynamic: true }) })
-      return logChannel.send({ embeds: [embed] })
-  }
-};
+    if (oldEmoji.name !== newEmoji.name) {
+        const embed = new Discord.EmbedBuilder()
+        .setAuthor({ name: newEmoji.guild.name, iconURL: newEmoji.guild.iconURL({ dynamic: true }) })
+        .setTimestamp()
+        .setFooter({ text: fetchEmojiAuthor.tag, iconURL: fetchEmojiAuthor.displayAvatarURL({ dynamic: true }) })
+        .setTitle('🤩 Emoji Updated')
+        .setDescription(`**${fetchEmojiAuthor} has updated <:${newEmoji.name}:${newEmoji.id}> emoji**`)
+        .addFields(
+            {
+                name: "Old name:",
+                value: oldEmoji.name
+            },
+            {
+                name: "New name:",
+                value: newEmoji.name
+            },
+            {
+                name: "Responsible Moderator:",
+                value: `<@${fetchEmojiAuthor.id}>`
+            }
+        )
+        return logChannel.send({ embeds: [embed] })
+    }
+}

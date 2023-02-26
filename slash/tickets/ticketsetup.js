@@ -14,7 +14,7 @@ module.exports = {
         },
         {
             name: 'category',
-            description: 'ticket Category',
+            description: 'Ticket Category',
             type: 7,
             channel_types: [4],
         },

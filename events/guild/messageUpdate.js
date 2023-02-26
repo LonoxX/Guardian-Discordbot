@@ -8,16 +8,20 @@ module.exports = async (client, oldMessgae, newMessage) => {
   if (!logChannel) return;
   if (oldMessgae.content !== newMessage.content) {
     const embed = new Discord.EmbedBuilder()
-      .setAuthor({ name: newMessage.author.tag, iconURL: newMessage.author.displayAvatarURL({ dynamic: true }), })
-      .setColor(config.Bot.EmbedColor)
-      .setTimestamp()
-      .setFooter({ text: newMessage.author.tag,  iconURL: newMessage.author.displayAvatarURL({ dynamic: true }),  })
-      .setDescription(
-        `📝 **Nachricht gesendet von${newMessage.author} bearbeitet in ${newMessage.channel}.** [Zur Nachricht springen](${newMessage.url}})` )
-      .addFields(
-        { name: "Alt:",  value: `\`\`\`\n${oldMessgae.content}\`\`\``, },
-        { name: "Neu:", value: `\`\`\`\n${newMessage.content}\`\`\``, }
-      );
-    return logChannel.send({ embeds: [embed] });
-  }
-};
+    .setAuthor({ name: newMessage.author.tag, iconURL: newMessage.author.displayAvatarURL({ dynamic: true }) })
+    .setTimestamp()
+    .setFooter({ text: newMessage.author.tag, iconURL: newMessage.author.displayAvatarURL({ dynamic: true }) })
+    .setDescription(`📝 **Message sent by ${newMessage.author} edited in ${newMessage.channel}.** [Jump To Message](${newMessage.url}})`)
+    .addFields(
+        {
+            name: "Old:",
+            value: `\`\`\`\n${oldMessgae.content}\`\`\``
+        },
+        {
+            name: "New:",
+            value: `\`\`\`\n${newMessage.content}\`\`\``
+        }
+    )
+    return logChannel.send({ embeds: [embed] })
+}
+}

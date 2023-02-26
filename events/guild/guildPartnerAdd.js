@@ -5,12 +5,9 @@ module.exports = async (client, guild) => {
   const guildData = await SGuilds.findOne({ where: { guildId: guild } });
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   if (!logChannel) return;
-  const embed = new EmbedBuilder()
-    .setTitle("Discord Partner")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
-    .setDescription(`**${guild.name} hat sich verpartnert!**`)
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
+  const embed = new Discord.EmbedBuilder()
+  .setAuthor({ name: guild.name, iconURL: guild.iconURL() })
+  .setDescription(`**${guild.name} has got partnered!**`)
+  .setTimestamp()
   return logChannel.send({ embeds: [embed] });
-};
+}

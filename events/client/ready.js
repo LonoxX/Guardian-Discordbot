@@ -3,6 +3,7 @@ const db = require("../../handlers/database.js");
 const Ticket = require("../../handlers/ticket.js");
 const SGuilds = require("../../handlers/guilds.js");
 const Activity = require("../../handlers/activity.js");
+const { addGuild } = require('../../handlers/settings.js');
 const { ActivityType } = require("discord.js");
 
 module.exports = async (client) => {
@@ -43,33 +44,9 @@ db.authenticate()
   })
   .then(async () => {
     setTimeout(async function () {
-    const guilds = client.guilds.cache;
-      if (guilds) {
-        for (const guild of guilds.values()) {
-          const server = await SGuilds.findOne({ where: { guildId: guild.id } });
-          if (!server) {
-            SGuilds.create({
-              guildId: guild.id,
-              prefix: config.Bot.Prefix,
-              lang: "en",
-              modLogsChannelId: null,
-              joinchannel: null,
-              leavechannel: null,
-              ticketChannelId: null,
-              ticketcategory: null,
-              membercount: guild.membercount,
-              uploadhost: "cdn.panda-network.de",
-              created_at: new Date(),
-            })
-              .then(() => {
-                console.log(`[Database] Added server(${guild.id}) to the database`);
-              })
-              .catch((error) => {
-                console.error(`[Database] Failed to add server(${guild.id}) to the database: ${error}`);
-              });
-          }
-        }
-      }
+      client.guilds.cache.forEach(guild => {
+        addGuild(guild);
+      });
     }, 3000);
   })
   .catch((error) => {

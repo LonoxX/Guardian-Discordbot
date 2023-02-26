@@ -9,16 +9,27 @@ module.exports = async (client, invite) => {
   const fetchModerator = allLogs.entries.first();
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("👩‍👧‍👦 Einladung gelöscht")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: invite.guild.name, iconURL: invite.guild.iconURL({ dynamic: true }), })
-    .setDescription( `**<@${fetchModerator.executor.id}> hat eine Einladung für ${invite.channel} gelöscht**` )
-    .addFields(
-      { name: "Einladungs Link:", value: `[Invite](https://discord.gg/${invite.code})`, },
-      { name: "Einladungs code:", value: invite.code, },
-      { name: "User:", value: `<@${fetchModerator.executor.id}>`, }
-    )
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  return logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({ name: invite.guild.name, iconURL: invite.guild.iconURL({ dynamic: true }) })
+  .setTitle('👩‍👧‍👦 Invite Deleted')
+  .setDescription(`**<@${fetchModerator.executor.id}> has deleted a invite for ${invite.channel} channel**`)
+  .setTimestamp()
+  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .addFields(
+      {
+          name: "Invite link:",
+          value: `[Invite](https://discord.gg/${invite.code})`,
+          inline: true
+      },
+      {
+          name: "Invite Code:",
+          value: invite.code,
+          inline: true
+      },
+      {
+          name: "Responsible Moderator:",
+          value: `<@${fetchModerator.executor.id}>`,
+          inline: true
+      },
+  )
+  return logChannel.send({ embeds: [embed] })
+}

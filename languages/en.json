@@ -3,6 +3,41 @@
     "label": "Create Ticket",
     "title": "Ticketsystem",
     "description": "To create a ticket react with 🎟️",
-    "panelSuccess": "Ticket-Panel  successfully sent to {channel}!"
+    "panelSuccess": "Ticket-Panel  successfully sent to {channel}!",
+    "adduser": "{user} has been added to the ticket!",
+    "removeuser": "{user} has been removed from the ticket!",
+    "ticketerror": "You can use this command only in a ticket!"
+  },
+  "channelCreate":{
+    "title": "🏚 Channel Created",
+    "description": "💬 **Channel Name:** `{name}`\n🆔 **Channel ID:** `{id}`\n🔨 **Channel Type:** `{type}`"
+  },
+  "channelDelete":{
+    "title": "🏚 Channel Deleted",
+    "description": "💬 **Channel Name:** `{name}`\n🆔 **Channel ID:** `{id}`\n🔨 **Channel Type:** `{type}`"
+  },
+  "channelUpdate":{
+    "title": "🏚 Channel Updated",
+    "renameMessage": "Old Channel Name: `{oldName}`\nNew Channel Name: `{newName}`",
+    "updateTopic": "Old Topic: `{oldTopic}`\nNew Topic: `{newTopic}`",
+    "UpdateNSFW": "Old NSFW: `{oldNSFW}`\nNew NSFW: `{newNSFW}`",
+    "UpdateSlowmode": "Old Slowmode: `{oldSlowmode}`\nNew Slowmode: `{newSlowmode}`",
+    "UpdateType": "Old Type: `{oldType}`\nNew Type: `{newType}`",
+    "UpdateBitrate": "Old Bitrate: `{oldBitrate}`\nNew Bitrate: `{newBitrate}`",
+    "UpdateUserLimit": "Old Userlimit: `{oldUserLimit}`\nNew Userlimit: `{newUserLimit}`"
+  },
+  "emoji":{
+    "create":{
+      "title": "🎨 Emoji Created",
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`"
+    },
+    "delete":{
+      "title": "🎨 Emoji Deleted",
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Type:** `{type}`"
+    },
+    "update":{
+      "title": "🎨 Emoji Updated",
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Type:** `{type}`"
+    }
   }
 }

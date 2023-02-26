@@ -9,15 +9,22 @@ module.exports = async (client, ban) => {
   const fetchModerator = allLogs.entries.first();
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-    .setTitle("🔨 User entbannt")
-    .setColor(config.Bot.EmbedColor)
-    .setAuthor({ name: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }), })
-    .setDescription(`**🔨 <@${ban.user.id}> wurde entbannt**`)
-    .setThumbnail(ban.user.displayAvatarURL({ dynamic: true }))
-    .addFields(
-      { name: "User:", value: `<@${fetchModerator.executor.id}>`, inline: true, },
-      { name: "Entbannungsgrund:", value: fetchModerator.reason || "No reason", inline: true, })
-    .setTimestamp()
-    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
-  logChannel.send({ embeds: [embed] });
-};
+  .setAuthor({  name: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }) })
+  .setDescription(`**🔨 <@${ban.user.id}> unbanned**`)
+  .setThumbnail(ban.user.displayAvatarURL({ dynamic: true }))
+  .setTimestamp()
+  .setFooter({ text: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }) })
+  .addFields(
+      {
+          name: "Responsible Moderator:",
+          value: `<@${fetchModerator.executor.id}>`,
+          inline: true
+      },
+      {
+          name: "Unban Reason:",
+          value: fetchModerator.reason || 'No reason',
+          inline: true
+      }
+  )
+  logChannel.send({ embeds: [embed] })
+}
