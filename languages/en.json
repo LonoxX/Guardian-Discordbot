@@ -80,7 +80,93 @@
           { "name": "Old Boost Level:", "value": "{oldBoostLevel}", "inline": true },
           { "name": "New Boost Level:", "value": "{newBoostLevel}", "inline": true }
       ]
+    },
+    "member": {
+      "title": "🚀 Server Boost",
+      "description": "🎉 **{member} has boosted the server!**"
+    },
+    "unboost": {
+      "title": "🚀 Server Unboost",
+      "description": "💔 **{member} has unboosted the server!**"
     }
+  },
+  "topic":{
+    "update":{
+      "title": "📝 Channel Topic Updated",
+      "description": "💬 **Channel Name:** `{channelName}`\n🆔 **Channel ID:** `{channelId}`",
+      "fields": [
+        { "name": "Old Topic:", "value": "{oldTopic}" },
+        { "name": "New Topic:", "value": "{newTopic}" }
+      ]
+    }
+  },
+  "nichname": {
+    "reset": {
+      "title": "📝 Member Nickname Reset",
+      "description": "hat seinen Nickname zurückgesetzt.",
+      "fields": [
+        { "name": "Vorheriger Nickname:", "value": "{oldNickname}" }
+      ]
+    },
+    "update": {
+      "title": "📝 Member Nickname Update",
+      "description": "hat seinen Nickname geändert.",
+      "fields": [
+        { "name": "Alter Nickname:", "value": "{oldNickname}" },
+        { "name": "Neuer Nickname:", "value": "{newNickname}" }
+      ]
+    }
+  },
+  "guildOwnerUpdate":{
+    "title": "👑 Server Owner Update",
+    "description": "💬 **{newOwner}** is now the new owner",
+    "fields": [
+      { "name": "Old Owner:", "value": "{oldOwner}" },
+      { "name": "New Owner:", "value": "{newOwner}" }
+    ]
+  },
+  "guildPartnered":{
+    "title": "👑 Server Partnered",
+    "description": "💬 **{guildName}** is now partnered"
+  },
+  "guildunPartnered":{
+    "title": "👑 Server Unpartnered",
+    "description": "💬 **{guildName}** is no longer partnered"
+  },
+  "guildAddVanity":{
+    "title": "👑 Server Vanity URL Added",
+    "description": "The Vanity URL is now **{vanityURL}**"
+  },
+  "guildRemoveVanity":{
+    "title": "👑 Server Vanity URL Removed",
+    "description": "💬 **{guildName}** has removed a vanity URL"
+  },
+  "guildUpdateVanity":{
+    "title": "👑 Server Vanity URL Updated",
+    "fields": [
+      { "name": "Old Vanity URL:", "value": "{oldVanityURL}" },
+      { "name": "New Vanity URL:", "value": "{newVanityURL}" }
+    ]
+  },
+  "inviteCreate":{
+    "title": "🔗 Invite Created",
+    "description": "💬 {username} has created an invite in **{channelName}**}",
+    "fields": [
+      { "name": "Invite Code:", "value": "{inviteCode}" },
+      { "name": "Invite URL:", "value": "{inviteURL}" },
+      { "name": "Invite Creator:", "value": "{inviteCreator}" },
+      { "name": "Invite Max Uses:", "value": "{inviteMaxUses}" },
+      { "name": "Invite Expires At:", "value": "{inviteExpiresAt}" }
+    ]
+  },
+  "inviteDelete":{
+    "title": "🔗 Invite Deleted",
+    "description": "💬 {username} has deleted an invite in **{channelName}**}",
+    "fields": [
+      { "name": "Invite Code:", "value": "{inviteCode}" },
+      { "name": "Invite URL:", "value": "{inviteURL}" },
+      { "name": "Invite Expires At:", "value": "{inviteExpiresAt}" }
+    ]
   }
 
 }

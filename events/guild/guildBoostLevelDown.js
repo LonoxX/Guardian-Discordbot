@@ -3,7 +3,6 @@ const { EmbedBuilder, Discord } = require("discord.js");
 const SGuilds = require("../../handlers/guilds.js");
 const { getLang } = require('../../handlers/settings.js');
 module.exports = async (client, guild, oldLevel, newLevel) => {
-  const guild = oldLevel.guild;    
   const guildData = await SGuilds.findOne({ where: { guildId: guild.id  } });
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   const lang = await getLang(guild);
