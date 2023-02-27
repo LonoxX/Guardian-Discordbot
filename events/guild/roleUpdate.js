@@ -13,7 +13,7 @@ module.exports = async (client, oldRole, newRole) => {
         const embed = new Discord.EmbedBuilder()
         .setAuthor({ name: newRole.guild.name, iconURL: newRole.guild.iconURL({ dynamic: true }) })
         .setDescription(`😛 **\`${newRole.name}\` has been updated.**`)
-        .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
         .setTimestamp()
         .addFields(
             {
@@ -35,7 +35,7 @@ module.exports = async (client, oldRole, newRole) => {
         const embed = new Discord.EmbedBuilder()
         .setAuthor({ name: newRole.guild.name, iconURL: newRole.guild.iconURL({ dynamic: true }) })
         .setDescription(`😛 **\`${newRole.name}\` has been updated.**`)
-        .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+        .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
         .setTimestamp()
         .addFields(
             {

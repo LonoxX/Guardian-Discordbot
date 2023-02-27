@@ -18,7 +18,7 @@ module.exports = async (client, oldMember, newMember) => {
           { name: "Vorheriger Nickname:", value: oldMember.nickname},
         )
         .setTimestamp()
-        .setFooter({ text: newMember.guild.name, iconURL: newMember.guild.iconURL({ dynamic: true }) });
+        .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
         logChannel.send({ embeds: [embed] });    
     }else {
       const embed = new Discord.EmbedBuilder()
@@ -30,8 +30,8 @@ module.exports = async (client, oldMember, newMember) => {
         { name: "Neuer Nickname:", value: newMember.nickname},
       )
       .setTimestamp()
-      .setFooter({ text: newMember.guild.name, iconURL: newMember.guild.iconURL({ dynamic: true }) });
-    logChannel.send({ embeds: [embed] });
+      .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
+      logChannel.send({ embeds: [embed] });
     }
   }
 };

@@ -13,6 +13,6 @@ module.exports = async (client, thread) => {
   .setDescription(`**<@${fetchModerator.executor.id}> has created <#${thread.id}> thread.**`)
   .addField('Responsible Moderator:', `<@${fetchModerator.executor.id}>`)
   .setTimestamp()
-  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   return logChannel.send({ embeds: [embed] })
 }

@@ -13,7 +13,7 @@ module.exports = async (client, role) => {
   .setTitle('♾️ Role Deleted')
   .setDescription(`👨‍👨‍👧 **\`${role.name}\` role has been deleted.**`)
   .setColor(role.hexColor)
-  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   .setTimestamp()
   .addFields(
       {

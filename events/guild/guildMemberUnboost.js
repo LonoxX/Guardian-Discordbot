@@ -10,7 +10,7 @@ module.exports = async (client, member) => {
   .setAuthor({ name: member.user.tag, iconURL: member.user.displayAvatarURL({ dynamic: true })})
   .setDescription(`**${member} has unboosted ${member.guild.name} server.**`)
   .addField("Total Boosts:", member.guild.premiumSubscriptionCount.toString())
-  .setFooter(member.guild.name, member.guild.iconURL({ dynamic: true }))
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   .setTimestamp()
   return logChannel.send({ embeds: [embed] });
 }

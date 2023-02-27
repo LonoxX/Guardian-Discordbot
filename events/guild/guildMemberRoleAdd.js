@@ -11,6 +11,6 @@ module.exports = async (client, member, role) => {
   .setDescription(`**:writing_hand: ${member} roles has been updated.**`)
   .addField("Role:", `✅ ${role.name}`)
   .setTimestamp()
-  .setFooter(member.guild.name, member.guild.iconURL({ dynamic: true }))
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   return logChannel.send({ embeds: [embed] })
 }

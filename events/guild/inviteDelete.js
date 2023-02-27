@@ -13,7 +13,7 @@ module.exports = async (client, invite) => {
   .setTitle('👩‍👧‍👦 Invite Deleted')
   .setDescription(`**<@${fetchModerator.executor.id}> has deleted a invite for ${invite.channel} channel**`)
   .setTimestamp()
-  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   .addFields(
       {
           name: "Invite link:",

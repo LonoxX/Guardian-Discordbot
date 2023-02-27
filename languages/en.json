@@ -31,13 +31,56 @@
       "title": "🎨 Emoji Created",
       "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`"
     },
+    "update": {
+      "title": "🎨 Emoji Updated",
+      "description": "**{fetchEmojiAuthor} has updated <:{newEmojiName}:{newEmojiId}> emoji**",
+      "fields": [
+        { "name": "Old name:", "value": "{oldEmojiName}" },
+        { "name": "New name:", "value": "{newEmojiName}" }
+      ]
+    },
     "delete":{
       "title": "🎨 Emoji Deleted",
       "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Type:** `{type}`"
+    }
+  },
+  "ban":{
+    "add":{
+      "title": "🔨 Member Banned",
+      "description": "**🔨 <@{userId}> was banned from the server.**",
+      "fields": [
+        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+        { "name": "Reason:", "value": "{reason}", "inline": true }
+      ]
     },
-    "update":{
-      "title": "🎨 Emoji Updated",
-      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Type:** `{type}`"
+    "remove":{
+      "title": "🔨 Ban Removed",
+      "description": "**🔨 <@{userId}> was unbanned from the server.**",
+      "fields": [
+        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+        { "name": "Reason:", "value": "{reason}", "inline": true }
+      ]
+    }
+  },
+  "boost":{
+    "leveldown": {
+      "title": "🚀 Server Boost Level Down",
+      "description": "💔 **Server boost level has been decreased to {newBoostLevel}.**",
+      "fields": [
+          { "name": "Server Name:", "value": "{guildName}", "inline": true },
+          { "name": "Old Boost Level:", "value": "{oldBoostLevel}", "inline": true },
+          { "name": "New Boost Level:", "value": "{newBoostLevel}", "inline": true }
+      ]
+    },
+    "levelup": {
+      "title": "🚀 Server Boost Level Up",
+      "description": "🎉 **Server boost level has been increased to {newBoostLevel}.**",
+      "fields": [
+          { "name": "Server Name:", "value": "{guildName}", "inline": true },
+          { "name": "Old Boost Level:", "value": "{oldBoostLevel}", "inline": true },
+          { "name": "New Boost Level:", "value": "{newBoostLevel}", "inline": true }
+      ]
     }
   }
+
 }

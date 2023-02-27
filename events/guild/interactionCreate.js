@@ -76,10 +76,7 @@ module.exports = async (client, interaction) => {
                 value: `Du und das Team können das Ticket schließen.`,
               },
             )
-            .setFooter({
-              text: `${client.user.username} `,
-              iconURL: `${client.user.displayAvatarURL()} `,
-            })
+            .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
             .setTimestamp();
 
           let msg = await createdChannel.send({ content: `||<@&${guildData.supportrole}>||`, embeds: [embed], components: [row], });

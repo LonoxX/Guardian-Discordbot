@@ -10,7 +10,7 @@ module.exports = async (client, oldMessgae, newMessage) => {
     const embed = new Discord.EmbedBuilder()
     .setAuthor({ name: newMessage.author.tag, iconURL: newMessage.author.displayAvatarURL({ dynamic: true }) })
     .setTimestamp()
-    .setFooter({ text: newMessage.author.tag, iconURL: newMessage.author.displayAvatarURL({ dynamic: true }) })
+    .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
     .setDescription(`📝 **Message sent by ${newMessage.author} edited in ${newMessage.channel}.** [Jump To Message](${newMessage.url}})`)
     .addFields(
         {

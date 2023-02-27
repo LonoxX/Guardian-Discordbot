@@ -16,7 +16,7 @@ module.exports = async (client, invite) => {
   .setTitle('👩‍👧‍👦 Invite Created')
   .setDescription(`**<@${fetchModerator.executor.id}> has created a new invite for ${invite.channel} channel**`)
   .setTimestamp()
-  .setFooter({ text: invite.inviter.tag, iconURL: invite.inviter.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   .addFields(
       {
           name: "Invite link:",

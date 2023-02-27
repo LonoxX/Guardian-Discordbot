@@ -15,6 +15,6 @@ module.exports = async (client, message,channel) => {
   .setDescription(`🗑 **Message sent by ${message.author} deleted in ${message.channel}.**\n${message.content}`)
   .addField('Responsible Moderator:', `<@${fetchModerator.executor.id}>`)
   .setTimestamp()
-  .setFooter({ text: fetchModerator.executor.tag, iconURL: fetchModerator.executor.displayAvatarURL({ dynamic: true }) })
+  .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   return logChannel.send({ embeds: [embed] })
 }
