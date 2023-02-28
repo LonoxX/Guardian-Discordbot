@@ -167,6 +167,21 @@
       { "name": "Invite URL:", "value": "{inviteURL}" },
       { "name": "Invite Expires At:", "value": "{inviteExpiresAt}" }
     ]
+  },
+  "messageDelete":{
+    "title": "📝 Message Deleted",
+    "description": "💬 **Message sent by {username} in {channelName}**",
+    "fields": [
+      { "name": "Message Content:", "value": "{messageContent}" },
+      { "name": "Responsible Moderator:", "value": "{fetchModerator}" }
+    ]
+  },
+  "messageUpdate":{
+    "title": "📝 Message Updated",
+    "description": "💬 **Message sent by {username} in {channelName}**",
+    "fields": [
+      { "name": "Old Message Content:", "value": "{oldMessageContent}" },
+      { "name": "New Message Content:", "value": "{newMessageContent}" }
+    ]
   }
-
 }

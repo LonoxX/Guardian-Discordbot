@@ -9,7 +9,6 @@ module.exports = async (client, ban) => {
   const logChannel = await client.channels.cache.get(guildData.logchannel);
   const fetchModerator = allLogs.entries.first();
   const lang = await getLang(guild);
-  console.log(ban.user.id);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
   .setTitle(lang.messages.ban.add.title)
