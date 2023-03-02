@@ -14,7 +14,7 @@ module.exports = async (client, oldMessgae, newMessage) => {
     .setColor(config.Bot.EmbedColor)
     .setAuthor({ name: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, })
     .setDescription(lang.messages.messageUpdate.description.replace('{username}', oldMessgae.author.username).replace('{channelName}', oldMessgae.channel.name).replace('{oldMessage}', oldMessgae.content))
-    .addFields(lang.messages.ban.add.fields.map(field => ({
+    .addFields(lang.messages.messageUpdate.fields.map(field => ({
         name: field.name,
         value: field.value
             .replace('{oldMessageContent}', `\`\`\`\n${oldMessgae.content}\`\`\``)
