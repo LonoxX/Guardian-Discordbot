@@ -52,7 +52,7 @@
     },
     "delete":{
       "title": "🎨 Emoji gelöscht",
-      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Typ:** `{type}`"
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}"
     }
   },
   "ban":{

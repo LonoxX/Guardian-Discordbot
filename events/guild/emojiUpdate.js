@@ -12,6 +12,7 @@ module.exports = async (client, oldEmoji, newEmoji) => {
     if (oldEmoji.name !== newEmoji.name) {
         const embed = new Discord.EmbedBuilder()
             .setTitle(lang.messages.emoji.update.title)
+            .setColor(config.Bot.EmbedColor)
             .setAuthor({ name: newEmoji.guild.name, iconURL: newEmoji.guild.iconURL({ dynamic: true }) })
             .setDescription(lang.messages.emoji.update.description
                 .replace('{fetchEmojiAuthor}', fetchEmojiAuthor)

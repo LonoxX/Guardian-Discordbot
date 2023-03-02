@@ -10,8 +10,9 @@ module.exports = async (client, emoji) => {
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
   .setTitle(lang.messages.emoji.delete.title)
+  .setColor(config.Bot.EmbedColor)
   .setAuthor({ name: emoji.guild.name, iconURL: emoji.guild.iconURL() })
-  .setDescription(lang.messages.emoji.delete.description.replace('{name}', emoji.name).replace('{id}', emoji.id).replace('{id}'))
+  .setDescription(lang.messages.emoji.delete.description.replace('{name}', emoji.name).replace('{id}', emoji.id))
   .setThumbnail(emoji.url)
   .setTimestamp()
   .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` });
