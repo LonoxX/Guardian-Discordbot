@@ -1,8 +1,266 @@
 {
   "ticket": {
-    "label": "Ticket erstellen",
-    "title": "Ticketsystem",
-    "description": "Um ein Ticket zu erstellen, reagiere mit 🎟️",
-    "panelSuccess": "Ticket-Panel erfolgreich an {channel} gesendet!"
+    "hasticket": "Du hast bereits ein Ticket offen! Bitte warte auf eine Antwort des Supports.",
+    "ticketcreatedinprogress": "Ticket wird erstellt...",
+    "ticketcreated": "Ticket erfolgreich erstellt in {channel}",
+    "title": "Support-Ticket",
+    "description": "Hallo {username}, vielen Dank für die Erstellung eines Tickets bei uns. Bitte beschreibe dein Anliegen in kurzen, aber aussagekräftigen Sätzen.",
+    "buttonlabel": "Ticket schließen",
+    "fields": [
+      { "name": "🔒 Geschlossenes Ticket", "value": "Dein Ticket wurde von einem Mitarbeiter geschlossen." }
+    ],
+    "error": "Ein Fehler ist aufgetreten.",
+    "close":{
+      "title": "🔒 Geschlossenes Ticket",
+      "description": "Das Ticket wurde von **{username}** geschlossen und wird bald gelöscht."
+    },
+    "transcript":{
+      "title": "📝 Protokoll {channel}",
+      "description": "Erstellt von: {username}\nErstellt am: **{date}**\nDownload: {download}"
+    }
+  },
+  "channelCreate":{
+    "title": "🏚 Kanal erstellt",
+    "description": "💬 **Kanalname:** `{name}`\n🆔 **Kanal-ID:** `{id}`\n🔨 **Kanaltyp:** `{type}`"
+  },
+  "channelDelete":{
+    "title": "🏚 Kanal gelöscht",
+    "description": "💬 **Kanalname:** `{name}`\n🆔 **Kanal-ID:** `{id}`\n🔨 **Kanaltyp:** `{type}`"
+  },
+  "channelUpdate":{
+    "title": "🏚 Kanal aktualisiert",
+    "renameMessage": "Alter Kanalname: `{oldName}`\nNeuer Kanalname: `{newName}`",
+    "updateTopic": "Alter Thema: `{oldTopic}`\nNeues Thema: `{newTopic}`",
+    "UpdateNSFW": "Alter NSFW-Status: `{oldNSFW}`\nNeuer NSFW-Status: `{newNSFW}`",
+    "UpdateSlowmode": "Alter Slowmode: `{oldSlowmode}`\nNeuer Slowmode: `{newSlowmode}`",
+    "UpdateType": "Alter Typ: `{oldType}`\nNeuer Typ: `{newType}`",
+    "UpdateBitrate": "Alter Bitrate: `{oldBitrate}`\nNeue Bitrate: `{newBitrate}`",
+    "UpdateUserLimit": "Alter Benutzerlimit: `{oldUserLimit}`\nNeues Benutzerlimit: `{newUserLimit}`"
+  },
+  "emoji":{
+    "create":{
+      "title": "🎨 Emoji erstellt",
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`"
+    },
+    "update": {
+      "title": "🎨 Emoji aktualisiert",
+      "description": "**{fetchEmojiAuthor} hat das <:{newEmojiName}:{newEmojiId}> Emoji aktualisiert**",
+      "fields": [
+        { "name": "Alter Name:", "value": "{oldEmojiName}" },
+        { "name": "Neuer Name:", "value": "{newEmojiName}" }
+      ]
+    },
+    "delete":{
+      "title": "🎨 Emoji gelöscht",
+      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`\n🔨 **Emoji Typ:** `{type}`"
+    }
+  },
+  "ban":{
+    "add":{
+      "title": "🔨 Mitglied gebannt",
+      "description": "**🔨 <@{userId}> wurde vom Server gebannt.**",
+      "fields": [
+        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+        { "name": "Grund:", "value": "{reason}", "inline": true }
+      ]
+    },
+    "remove":{
+      "title": "🔨 Ban aufgehoben",
+      "description": "**🔨 <@{userId}> wurde vom Server entbannt.**",
+      "fields": [
+        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+        { "name": "Grund:", "value": "{reason}", "inline": true }
+      ]
+    }
+  },
+  "boost":{
+    "leveldown": {
+      "title": "🚀 Server-Boost-Level gesenkt",
+      "description": "💔 **Der Server-Boost-Level wurde auf {newBoostLevel} gesenkt.**",
+      "fields": [
+          { "name": "Servername:", "value": "{guildName}", "inline": true },
+          { "name": "Alter Boost-Level:", "value": "{oldBoostLevel}", "inline": true },
+          { "name": "Neuer Boost-Level:", "value": "{newBoostLevel}", "inline": true }
+      ]
+    },
+    "levelup": {
+      "title": "🚀 Server-Boost-Level erhöht",
+      "description": "🎉 **Der Server-Boost-Level wurde auf {newBoostLevel} erhöht.**",
+      "fields": [
+          { "name": "Servername:", "value": "{guildName}", "inline": true },
+          { "name": "Alter Boost-Level:", "value": "{oldBoostLevel}", "inline": true },
+          { "name": "Neuer Boost-Level:", "value": "{newBoostLevel}", "inline": true }
+      ]
+    },
+    "member": {
+      "title": "🚀 Server-Boost",
+      "description": "🎉 **{member} hat den Server geboostet!**"
+    },
+    "unboost": {
+      "title": "🚀 Server-Boost aufgehoben",
+      "description": "💔 **{member} hat den Server-Boost aufgehoben!**"
+    }
+  },
+  "topic": {
+    "update": {
+      "title": "📝 Channel Thema aktualisiert",
+      "description": "💬 **Channel-Name:** `{channelName}`\n🆔 **Channel-ID:** `{channelId}`",
+      "fields": [
+        { "name": "Altes Thema:", "value": "{oldTopic}" },
+        { "name": "Neues Thema:", "value": "{newTopic}" }
+      ]
+    }
+  },
+  "nichname": {
+    "reset": {
+      "title": "📝 Mitgliedsname zurückgesetzt",
+      "description": "hat seinen Namen zurückgesetzt.",
+      "fields": [
+        { "name": "Vorheriger Name:", "value": "{oldNickname}" }
+      ]
+    },
+    "update": {
+      "title": "📝 Mitgliedsname aktualisiert",
+      "description": "hat seinen Namen geändert.",
+      "fields": [
+        { "name": "Alter Name:", "value": "{oldNickname}" },
+        { "name": "Neuer Name:", "value": "{newNickname}" }
+      ]
+    }
+  },
+  "guildOwnerUpdate": {
+    "title": "👑 Serverbesitzer aktualisiert",
+    "description": "💬 **{newOwner}** ist jetzt der neue Besitzer",
+    "fields": [
+      { "name": "Alter Besitzer:", "value": "{oldOwner}" },
+      { "name": "Neuer Besitzer:", "value": "{newOwner}" }
+    ]
+  },
+  "guildPartnered": {
+    "title": "👑 Server Partner geworden",
+    "description": "💬 **{guildName}** ist jetzt ein Partner"
+  },
+  "guildUnpartnered": {
+    "title": "👑 Server keine Partnerschaft mehr",
+    "description": "💬 **{guildName}** ist kein Partner mehr"
+  },
+  "guildAddVanity": {
+    "title": "👑 Vanity-URL zum Server hinzugefügt",
+    "description": "Die Vanity-URL lautet jetzt **{vanityURL}**"
+  },
+  "guildRemoveVanity": {
+    "title": "👑 Vanity-URL vom Server entfernt",
+    "description": "💬 **{guildName}** hat eine Vanity-URL entfernt"
+  },
+  "guildUpdateVanity": {
+    "title": "👑 Vanity-URL des Servers aktualisiert",
+    "fields": [
+      { "name": "Alte Vanity-URL:", "value": "{oldVanityURL}" },
+      { "name": "Neue Vanity-URL:", "value": "{newVanityURL}" }
+    ]
+  },
+  "inviteCreate": {
+    "title": "🔗 Einladung erstellt",
+    "description": "💬 {username} hat eine Einladung in **{channelName}** erstellt",
+    "fields": [
+      { "name": "Einladungscode:", "value": "{inviteCode}" },
+      { "name": "Einladungs-URL:", "value": "{inviteURL}" },
+      { "name": "Einladungsersteller:", "value": "{inviteCreator}" },
+      { "name": "Maximale Anzahl an Verwendungen:", "value": "{inviteMaxUses}" },
+      { "name": "Einladung läuft ab am:", "value": "{inviteExpiresAt}" }
+    ]
+  },
+  "inviteDelete": {
+    "title": "🔗 Einladung gelöscht",
+    "description": "💬 {username} hat eine Einladung in **{channelName}** gelöscht",
+    "fields": [
+      { "name": "Einladungscode:", "value": "{inviteCode}" },
+      { "name": "Einladungs-URL:", "value": "{inviteURL}" },
+      { "name": "Einladung läuft ab am:", "value": "{inviteExpiresAt}" }
+    ]
+  },
+  "messageDelete": {
+    "title": "📝 Nachricht gelöscht",
+    "description": "💬 **Nachricht von {username} in {channelName} gesendet**",
+    "fields": [
+      { "name": "Nachrichteninhalt:", "value": "{messageContent}" },
+      { "name": "Verantwortlicher Moderator:", "value": "{fetchModerator}" }
+    ]
+  },
+  "messageUpdate": {
+    "title": "📝 Nachricht aktualisiert",
+    "description": "💬 **Nachricht von {username} in {channelName} gesendet**",
+    "fields": [
+      { "name": "Alter Nachrichteninhalt:", "value": "{oldMessageContent}" },
+      { "name": "Neuer Nachrichteninhalt:", "value": "{newMessageContent}" }
+    ]
+  },
+  "roleCreate": {
+    "title": "♾️ Rolle erstellt",
+    "description": "💬 **Rollenname:** {roleName}",
+    "fields": [
+      { "name": "Rollenname:", "value": "{roleName}" },
+      { "name": "Rollen-ID:", "value": "{roleId}" }
+    ]
+  },
+  "roleDelete": {
+    "title": "📝 Rolle gelöscht",
+    "description": "💬 **Rollenname:** {roleName}",
+    "fields": [
+      { "name": "Rollenname:", "value": "{roleName}" },
+      { "name": "Rollenfarbe:", "value": "{roleColor}" },
+      { "name": "Rollen-ID:", "value": "{roleId}" }
+    ]
+  },
+  "roleUpdate":{
+    "title": "♾️ Rolle aktualisiert",
+    "titlename": "📝 Rollenname aktualisiert",
+    "description": "💬 **Rollenname:** {roleName}",
+    "fields": [
+      { "name": "Alter Rollenname:", "value": "{oldRoleName}" },
+      { "name": "Neuer Rollenname:", "value": "{newRoleName}" },
+      { "name": "Rollen-ID:", "value": "{roleId}" },
+      { "name": "Verantwortlicher Moderator:", "value": "{fetchModerator}" }
+    ]
+  },
+  "threadCreate":{
+    "title": "📝 Thread erstellt",
+    "description": "Thread wurde erstellt",
+    "fields": [
+      { "name": "Thread-Name:", "value": "{threadName}" },  
+      { "name": "Übergeordneter Thread:", "value": "{threadParent}" },
+      { "name": "Thread-Ersteller:", "value": "{threadCreator}" }
+    ]
+  },
+  "threadUpdate":{
+    "title": "📝 Thread aktualisiert",
+    "titlearchived": "📝 Thread archiviert",
+    "titleunarchived": "📝 Thread wiederhergestellt",
+    "description": "💬 **Thread-Name:** {threadName} wurde aktualisiert",
+    "fields": [
+      { "name": "Alter Thread-Name:", "value": "{oldThreadName}" },
+      { "name": "Neuer Thread-Name:", "value": "{newThreadName}" },
+      { "name": "Übergeordneter Thread", "value": "{threadParent}" },
+      { "name": "Thread-Ersteller:", "value": "{threadCreator}" }
+    ],
+    "fieldsarchived": [
+      { "name": "Thread-Name:", "value": "{threadName}" },
+      { "name": "Übergeordneter Thread", "value": "{threadParent}" },
+      { "name": "Thread-Ersteller:", "value": "{threadCreator}" }
+    ],
+    "fieldsunarchived": [
+      { "name": "Thread-Name:", "value": "{threadName}" },
+      { "name": "Übergeordneter Thread", "value": "{threadParent}" },
+      { "name": "Thread-Ersteller:", "value": "{threadCreator}" }
+    ]
+  },
+  "threadDelete":{
+    "title": "📝 Thread gelöscht",
+    "description": "Thread wurde gelöscht",
+    "fields": [
+      { "name": "Thread-Name:", "value": "{threadName}" },  
+      { "name": "Übergeordneter Thread:", "value": "{threadParent}" },
+      { "name": "Thread-Ersteller:", "value": "{threadCreator}" }
+    ]
   }
 }

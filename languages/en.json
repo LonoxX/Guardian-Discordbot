@@ -1,12 +1,24 @@
 {
   "ticket": {
-    "label": "Create Ticket",
-    "title": "Ticketsystem",
-    "description": "To create a ticket react with 🎟️",
-    "panelSuccess": "Ticket-Panel  successfully sent to {channel}!",
-    "adduser": "{user} has been added to the ticket!",
-    "removeuser": "{user} has been removed from the ticket!",
-    "ticketerror": "You can use this command only in a ticket!"
+    "hasticket": "You already have a ticket open! Please wait for a staff member to respond.",
+    "ticketcreatedinprogress": "Ticket is created ....",
+    "ticketcreated": "Ticket created successfully in {channel}",
+    "title": "Support Ticket",
+    "description": "Hello {username} Thank you for creating a ticket with us \nPlease describe your request in a short but meaningful text.",
+    "buttonlabel": "Close Ticket",
+    "fields": [
+      { "name": "🔒 Closed Ticket", "value": "Your ticket has been closed by a staff member." }
+    ],
+    "error": "An error has occurred.",
+    "close":{
+      "title": "🔒 Closed Ticket",
+      "description": "The ticket was closed by **{username}** \n it will be deleted shortly."
+    },
+    "transcript":{
+      "title": "📝 Transcript {channel}}",
+      "description": "Created by: {username} \n Created at: ** \n Donwload: {download}"
+    }
+
   },
   "channelCreate":{
     "title": "🏚 Channel Created",
@@ -182,6 +194,74 @@
     "fields": [
       { "name": "Old Message Content:", "value": "{oldMessageContent}" },
       { "name": "New Message Content:", "value": "{newMessageContent}" }
+    ]
+  },
+  "roleCreate":{
+    "title": "♾️ Role Created",
+    "description": "💬 **Role Name:** {roleName}",
+    "fields": [
+      { "name": "Role Name:", "value": "{roleName}" },
+      { "name": "Role ID:", "value": "{roleId}" }
+    ]
+  },
+  "roleDelete":{
+    "title": "📝 Role Deleted",
+    "description": "💬 **Role Name:** {roleName}",
+    "fields": [
+      { "name": "Role Name:", "value": "{roleName}" },
+      { "name": "Role Color:", "value": "{roleColor}" },
+      { "name": "Role ID:", "value": "{roleId}" }
+    ]
+  },
+  "roleUpdate":{
+    "title": "♾️ Role Updated",
+    "titlename": "📝 Role Name Updated",
+    "description": "💬 **Role Name:** {roleName}",
+    "fields": [
+      { "name": "Old Role Name:", "value": "{oldRoleName}" },
+      { "name": "New Role Name:", "value": "{newRoleName}" },
+      { "name": "Role ID:", "value": "{roleId}" },
+      { "name": "Responsible Moderator:", "value": "{fetchModerator}" }
+    ]
+  },
+  "threadCreate":{
+    "title": "📝 Thread Created",
+    "description": "Thread was created",
+    "fields": [
+      { "name": "Thread Name:", "value": "{threadName}" },  
+      { "name": "Thread Parent:", "value": "{threadParent}" },
+      { "name": "Thread Creator:", "value": "{threadCreator}" }
+    ]
+  },
+  "threadUpdate":{
+    "title": "📝 Thread Updated",
+    "titlearchived": "📝 Thread Archived",
+    "titleunarchived": "📝 Thread Unarchived",
+    "description": "💬 **Thread Name:** {threadName} was updated",
+    "fields": [
+      { "name": "Old Thread Name:", "value": "{oldThreadName}" },
+      { "name": "New Thread Name:", "value": "{newThreadName}" },
+      { "name": "Thread Parent", "value": "{threadParent}" },
+      { "name": "Thread Creator:", "value": "{threadCreator}" }
+    ],
+    "fieldsarchived": [
+      { "name": "Thread Name:", "value": "{threadName}" },
+      { "name": "Thread Parent", "value": "{threadParent}" },
+      { "name": "Thread Creator:", "value": "{threadCreator}" }
+    ],
+    "fieldsunarchived": [
+      { "name": "Thread Name:", "value": "{threadName}" },
+      { "name": "Thread Parent", "value": "{threadParent}" },
+      { "name": "Thread Creator:", "value": "{threadCreator}" }
+    ]
+  },
+  "threadDelete":{
+    "title": "📝 Thread Deleted",
+    "description": "Thread was deleted",
+    "fields": [
+      { "name": "Thread Name:", "value": "{threadName}" },  
+      { "name": "Thread Parent:", "value": "{threadParent}" },
+      { "name": "Thread Creator:", "value": "{threadCreator}" }
     ]
   }
 }

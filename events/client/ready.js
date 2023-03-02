@@ -10,7 +10,6 @@ module.exports = async (client) => {
   setInterval(() => {
     const activities = [
       { text: "" + Math.ceil(client.guilds.cache.size) + " Server." },
-      { text: "Version " + config.Bot.Version },
     ];
     let activity;
     db.authenticate()

@@ -16,7 +16,7 @@ module.exports = async (client, channel) => {
     if (!logChannel) return;
 
     const embed = new Discord.EmbedBuilder()
-        .setTitle(lang.messages.channelCreate.title)
+        .setTitle(lang.messages.channelDelete.title)
         .setColor(config.Bot.EmbedColor)
         .setAuthor({ name: channel.guild.name, iconURL: channel.guild.iconURL() })
         .setDescription(channelDescription)

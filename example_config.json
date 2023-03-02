@@ -2,8 +2,7 @@
     "Bot":{
         "Token": "Bot_Token",
         "BotID": "Bot_ID",
-        "EmbedColor": "#3498dd",        
-        "Version": "1.0.0",
+        "EmbedColor": "#3498dd",
         "Prefix": "?", 
         "OwnersID": ["Owner_ID"]
     },

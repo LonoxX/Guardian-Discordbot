@@ -44,7 +44,7 @@ async function addGuild(guild) {
       ticketChannelId: null,
       ticketcategory: null,
       membercount: guild.memberCount,
-      uploadhost: "pandaserver.de",
+      uploadhost: "pandasserver.de",
       created_at: new Date(),
     });
     console.log(`[Database] Added Guild (${guild.id}) to the database`);

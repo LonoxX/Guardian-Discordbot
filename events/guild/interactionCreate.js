@@ -3,13 +3,16 @@ const config = require("../../config.json");
 const db = require("../../handlers/database");
 const Ticket = require("../../handlers/ticket.js");
 const SGuilds = require("../../handlers/guilds.js");
+const { getLang } = require('../../handlers/settings.js');
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require("discord.js");
 const discordTranscripts = require("discord-html-transcripts");
 const request = require('request');
 module.exports = async (client, interaction) => {
   
-  let guild = await interaction.guild;
-  const guildData = await SGuilds.findOne({ where: { guildId: guild.id } });
+  const guild = interaction.guild;
+  const guildData = await SGuilds.findOne({ where: { guildId: guild.id  } });
+  const logChannel = await client.channels.cache.get(guildData.logchannel);
+  const lang = await getLang(guild);
   // Ticket Erstellen
   if (interaction.customId === "create-ticket") {
     const ticketParentCategoryId = guildData.ticketcategory;
@@ -22,11 +25,11 @@ module.exports = async (client, interaction) => {
     }).catch((err) => console.log(err));
     if (findTicket) {
       await interaction.reply({
-        content: `**Du hast bereits ein Ticket erstellt. Bitte warte auf eine Antwort von einem Support-Team.**`,
+        content: lang.messages.ticket.hasticket,
         ephemeral: true,
       });
     } else {
-      await interaction.reply({ content: `Ticket wird erstellt ....`,  ephemeral: true, });
+      await interaction.reply({ content: lang.messages.ticket.ticketcreatedinprogress,  ephemeral: true, });
 
       db.authenticate()
       .then(async () => {
@@ -58,24 +61,20 @@ module.exports = async (client, interaction) => {
 
           const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-              .setLabel("Schließen")
+              .setLabel(lang.messages.ticket.buttonlabel)
               .setStyle("4")
               .setEmoji("🔒")
               .setCustomId("ticket-close"),
           );
   
           const embed = new EmbedBuilder()
-            .setTitle("Support Ticket")
+            .setTitle(lang.messages.ticket.title)
             .setColor(config.Bot.EmbedColor)
-            .setDescription(
-              `Hallo <@!${interaction.user.id}> Danke das du ein Ticket bei uns erstellt hast \nBitte Beschreibe dein Anliegen in einem kurzen aber aussagekräftigem Text.`
-            )
-            .addFields(
-              {
-                name: "🔒 Schließen ",
-                value: `Du und das Team können das Ticket schließen.`,
-              },
-            )
+            .setDescription(lang.messages.ticket.description.replace('{username}', `<@!${interaction.user.id}>`))
+            .addFields(lang.messages.ticket.fields.map(field => ({
+              name: field.name,
+              value: field.value
+            })))
             .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
             .setTimestamp();
 
@@ -93,10 +92,10 @@ module.exports = async (client, interaction) => {
           });   
           let ticketId = String(newTicket.dataValues.ticketId).padStart(4, "0");
           createdChannel.edit({ name: `ticket-${ticketId}` });
-          await interaction.editReply({ content: `Ticket erfolgreich erstellt ${createdChannel} !`, ephemeral: true, });
+          await interaction.editReply({ content: lang.messages.ticket.ticketcreated.replace('{channel}', `${createdChannel}`), ephemeral: true, });
         } catch (err) {
           console.log(err);
-          await interaction.editReply({ content: `Ein Fehler ist aufgetreten.`, ephemeral: true, });
+          await interaction.editReply({ content: lang.messages.ticket.error, ephemeral: true, });
         }
       })
 
@@ -111,7 +110,7 @@ module.exports = async (client, interaction) => {
     const logchannel = client.channels.cache.get(guildData.logchannel);
     const rowPanel = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
-        .setLabel("Schließen")
+      .setLabel(lang.messages.ticket.buttonlabel)
         .setStyle("4")
         .setEmoji("🔒")
         .setDisabled(true)
@@ -119,9 +118,9 @@ module.exports = async (client, interaction) => {
     );
     await interaction.message.edit({ components: [rowPanel] });
     const embed = new EmbedBuilder()
-      .setTitle("Support Ticket - Geschlossen")
+      .setTitle(lang.messages.ticket.close.title)
       .setColor(config.Bot.EmbedColor)
-      .setDescription(  `Das Ticket wurde von **<@!${interaction.user.id}>** geschlossen! \n es wird in Kürze gelöscht!` )
+      .setDescription(lang.messages.ticket.close.description.replace('{username}',`<@!${interaction.user.id}>`))
       .setFooter({ text: `${client.user.username} `, iconURL: `${client.user.displayAvatarURL()} `,  })
       .setTimestamp();
     interaction.reply({ embeds: [embed] });
@@ -159,11 +158,11 @@ module.exports = async (client, interaction) => {
         if (error) throw new Error(error);
       });
       const transcript = new EmbedBuilder()
-        .setTitle("Transcript: " + channel.name)
+        .setTitle(lang.messages.ticket.transcript.title.replace('{channel}', `${channel.name}`))
         .setColor(config.Bot.EmbedColor)
         .setThumbnail(client.user.displayAvatarURL())
         .setAuthor({ name: client.user.tag, iconURL: client.user.displayAvatarURL({ dynamic: true }), })
-        .setDescription( `Erstellt von: <@!${ interaction.user.id }> \n Erstellt am: ** ${new Date().toLocaleString()}**\n Donwload: [Transcript](https://${guildData.uploadhost}/tickets/${filename})`)
+        .setDescription(lang.messages.ticket.transcript.description.replace('{username}', `<@!${interaction.user.id}>`).replace('{date}', `${new Date().toLocaleDateString()}`).replace('{download}', `[Transcript](https://${guildData.uploadhost}/tickets/${filename})`))
         .setTimestamp()
         .setFooter({ text: `${client.user.username} `,  iconURL: `${client.user.displayAvatarURL()}`, });
       logchannel.send({ embeds: [transcript] }).then((message) => {
