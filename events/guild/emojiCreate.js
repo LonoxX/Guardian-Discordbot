@@ -10,9 +10,9 @@ module.exports = async (client, emoji) => {
   const lang = await getLang(guild);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-  .setTitle(lang.messages.emoji.create.title)
+  .setTitle(lang.messages.emojicreate.title)
   .setAuthor({ name: emoji.guild.name, iconURL: emoji.guild.iconURL() })
-  .setDescription(lang.messages.emoji.create.description.replace('{name}', emoji.name).replace('{id}', emoji.id).replace('{id}'))
+  .setDescription(lang.messages.emojicreate.description.replace('{name}', emoji.name).replace('{id}', emoji.id).replace('{id}'))
   .setThumbnail(emoji.url)
   .setTimestamp()
   .addFields({ name: "⏰ User:",  value: `<@${fetchEmojiAuthor.id}>` },

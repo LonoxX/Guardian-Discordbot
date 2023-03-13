@@ -11,16 +11,16 @@ module.exports = async (client, oldEmoji, newEmoji) => {
     if (!logChannel) return;
     if (oldEmoji.name !== newEmoji.name) {
         const embed = new Discord.EmbedBuilder()
-            .setTitle(lang.messages.emoji.update.title)
+            .setTitle(lang.messages.emojiupdate.title)
             .setColor(config.Bot.EmbedColor)
             .setAuthor({ name: newEmoji.guild.name, iconURL: newEmoji.guild.iconURL({ dynamic: true }) })
-            .setDescription(lang.messages.emoji.update.description
+            .setDescription(lang.messages.emojiupdate.description
                 .replace('{fetchEmojiAuthor}', fetchEmojiAuthor)
                 .replace('{newEmojiName}', newEmoji.name)
                 .replace('{newEmojiId}', newEmoji.id)
                 .replace('{oldEmojiName}', oldEmoji.name)
             )
-            .addFields(lang.messages.emoji.update.fields.map(field => ({
+            .addFields(lang.messages.emojiupdate.fields.map(field => ({
                 name: field.name,
                 value: field.value
                     .replace('{oldEmojiName}', oldEmoji.name)

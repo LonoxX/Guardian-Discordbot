@@ -19,7 +19,7 @@ module.exports = async (client, role) => {
         name: field.name,
         value: field.value  
             .replace('{roleName}', `\`\`\`\n${role.name}\`\`\``)
-            .replace('{roleID}', `\`\`\`\n${role.id}\`\`\``)
+            .replace('{roleId}', `\`\`\`\n${role.id}\`\`\``)
         })))
   .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}` })
   .setTimestamp()

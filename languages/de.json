@@ -6,6 +6,8 @@
     "title": "Support-Ticket",
     "description": "Hallo {username}, vielen Dank für die Erstellung eines Tickets bei uns. Bitte beschreibe dein Anliegen in kurzen, aber aussagekräftigen Sätzen.",
     "buttonlabel": "Ticket schließen",
+    "panelSuccess": "Ticket Panel Erfolg in {channel} gesendet",
+    "panneldescription": "Um ein Ticket zu erstellen reagiere mit 🎟️",
     "fields": [
       { "name": "🔒 Geschlossenes Ticket", "value": "Dein Ticket wurde von einem Mitarbeiter geschlossen." }
     ],
@@ -37,41 +39,37 @@
     "UpdateBitrate": "Alter Bitrate: `{oldBitrate}`\nNeue Bitrate: `{newBitrate}`",
     "UpdateUserLimit": "Alter Benutzerlimit: `{oldUserLimit}`\nNeues Benutzerlimit: `{newUserLimit}`"
   },
-  "emoji":{
-    "create":{
-      "title": "🎨 Emoji erstellt",
-      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`"
-    },
-    "update": {
-      "title": "🎨 Emoji aktualisiert",
-      "description": "**{fetchEmojiAuthor} hat das <:{newEmojiName}:{newEmojiId}> Emoji aktualisiert**",
-      "fields": [
-        { "name": "Alter Name:", "value": "{oldEmojiName}" },
-        { "name": "Neuer Name:", "value": "{newEmojiName}" }
-      ]
-    },
-    "delete":{
-      "title": "🎨 Emoji gelöscht",
-      "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}"
-    }
+  "emojicreate":{
+    "title": "🎨 Emoji erstellt",
+    "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}`"
   },
-  "ban":{
-    "add":{
-      "title": "🔨 Mitglied gebannt",
-      "description": "**🔨 <@{userId}> wurde vom Server gebannt.**",
-      "fields": [
-        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
-        { "name": "Grund:", "value": "{reason}", "inline": true }
-      ]
-    },
-    "remove":{
-      "title": "🔨 Ban aufgehoben",
-      "description": "**🔨 <@{userId}> wurde vom Server entbannt.**",
-      "fields": [
-        { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
-        { "name": "Grund:", "value": "{reason}", "inline": true }
-      ]
-    }
+  "emojiupdate": {
+    "title": "🎨 Emoji aktualisiert",
+    "description": "**{fetchEmojiAuthor} hat das <:{newEmojiName}:{newEmojiId}> Emoji aktualisiert**",
+    "fields": [
+      { "name": "Alter Name:", "value": "{oldEmojiName}" },
+      { "name": "Neuer Name:", "value": "{newEmojiName}" }
+    ]
+  },
+  "emojidelete":{
+    "title": "🎨 Emoji gelöscht",
+    "description": "📛 **Emoji Name:** `{name}`\n🆔 **Emoji ID:** `{id}"
+  },
+  "banadd":{
+    "title": "🔨 Mitglied gebannt",
+    "description": "**🔨 <@{userId}> wurde vom Server gebannt.**",
+    "fields": [
+      { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+      { "name": "Grund:", "value": "{reason}", "inline": true }
+    ]
+  },
+  "banremove":{
+    "title": "🔨 Ban aufgehoben",
+    "description": "**🔨 <@{userId}> wurde vom Server entbannt.**",
+    "fields": [
+      { "name": "Moderator:", "value": "<@{moderatorId}>", "inline": true },
+      { "name": "Grund:", "value": "{reason}", "inline": true }
+    ]
   },
   "boost":{
     "leveldown": {

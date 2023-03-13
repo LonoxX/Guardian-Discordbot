@@ -44,7 +44,7 @@ module.exports = {
             .setTitle(`${guild.name} - ${lang.messages.ticket.title}`, client.user.displayAvatarURL())
             .setColor(config.Bot.EmbedColor)
             .setThumbnail(client.user.displayAvatarURL())
-            .setDescription(lang.messages.ticket.description)
+            .setDescription(lang.messages.ticket.panneldescription)
             .setTimestamp()
             .setFooter({ text: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, });
 

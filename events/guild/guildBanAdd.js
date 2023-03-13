@@ -11,12 +11,12 @@ module.exports = async (client, ban) => {
   const lang = await getLang(guild);
   if (!logChannel) return;
   const embed = new Discord.EmbedBuilder()
-  .setTitle(lang.messages.ban.add.title)
+  .setTitle(lang.messages.banadd.title)
   .setColor(config.Bot.EmbedColor)
   .setAuthor({ name: ban.guild.name, iconURL: ban.guild.iconURL({ dynamic: true }), })
-  .setDescription(lang.messages.ban.add.description .replace('{userId}', ban.user.id))
+  .setDescription(lang.messages.banadd.description .replace('{userId}', ban.user.id))
   .setThumbnail(ban.user.displayAvatarURL({ dynamic: true }))
-  .addFields(lang.messages.ban.add.fields.map(field => ({
+  .addFields(lang.messages.banadd.fields.map(field => ({
     name: field.name,
     value: field.value
         .replace('{moderatorId}', fetchModerator.executor.id)

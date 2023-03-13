@@ -3,6 +3,7 @@ const db = require("../../handlers/database.js");
 const Ticket = require("../../handlers/ticket.js");
 const SGuilds = require("../../handlers/guilds.js");
 const Activity = require("../../handlers/activity.js");
+const create_voice = require("../../handlers/create_voice.js");
 const { addGuild } = require('../../handlers/settings.js');
 const { ActivityType } = require("discord.js");
 
@@ -39,6 +40,8 @@ db.authenticate()
     SGuilds.sync();
     Activity.init(db);
     Activity.sync();
+    create_voice.init(db);
+    create_voice.sync();
     console.log("[Database] Connection has been established successfully.");
   })
   .then(async () => {

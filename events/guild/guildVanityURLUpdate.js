@@ -11,7 +11,7 @@ module.exports = async (client, guild, oldURL, newURL) => {
     .setTitle(lang.messages.guildUpdateVanity.title)
     .setColor(config.Bot.EmbedColor)
     .setAuthor({ name: `${client.user.username}`, iconURL: `${client.user.displayAvatarURL()}`, })
-    .addFields(lang.messages.ban.add.fields.map(field => ({
+    .addFields(lang.messages.guildUpdateVanity.fields.map(field => ({
       name: field.name,
       value: field.value
           .replace('{oldVanityURL}', `${oldURL}`)
